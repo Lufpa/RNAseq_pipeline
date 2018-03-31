@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --mem=20000
-#SBATCH --time=5-00:00:00 --qos=1wk
-#SBATCH --job-name=SSS_old
+#SBATCH --time=5:00:00 --qos=1day
+#SBATCH --job-name=RNAseq
 #SBATCH --cpus-per-task=5
 #SBATCH --output="%A_%a.out"
 #SBATCH --error="%A_%a.error"
@@ -17,10 +17,10 @@
 ## it requires the script "map_readcounts.sh" located in ~/varios/scripts/map_readcounts.sh
 
 
-
-set -e 
-
 date
+set -e 
+# set up the number of cpus to match --cpus-per-task, this value will be use for tophat, samtools, and featurecounts
+cpus=5
 inputcount='dedup'
 
 #refgenome=~/genomes/hsapiens/genome
@@ -43,7 +43,7 @@ echo "Read3 read"
 #echo $file >> listfiles
 #done
 
-source ~/varios/scripts/RNAseq_map_readcounts2.sh ${r3} ${inputcount} ${refgenome} ${annotation}
+source ~/varios/scripts/RNAseq_map_readcounts2.sh ${cpus} ${inputcount} ${refgenome} ${annotation} ${r3}
 
 #echo "Start merging the counts of all samples"
 
