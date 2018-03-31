@@ -60,4 +60,7 @@ else
 		 ~/bin/subread-1.5.1-Linux-x86_64/bin/featureCounts -T $cpus -t exon -g gene_id -a $annotation -o $countfile $uniqfile
 		echo "Done gene count for non-deduplicated file" $uniqfile
 fi
+
+rm -r $tmpdir
+
 date

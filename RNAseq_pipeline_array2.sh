@@ -11,7 +11,6 @@
 ##Requires: 
 # Demultiplexed files (*R1.fq.gz)
 # Read 3 (i5)
-# AdaptersTrim.fasta file
 
 ## DESCRIPTION ##
 # This master scripts loads "RNAseq_map_readcounts2.sh". That script trims the raw fq files, maps using TopHat, removes multiple mapping reads, deduplicates bam files using either Picard or Nudup, and performs gene count using Feature Counts. 
