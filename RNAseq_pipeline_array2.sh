@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --mem=20000
-#SBATCH --time=5:00:00 --qos=1day
+#SBATCH --time=1:00:00 --qos=1hr
 #SBATCH --job-name=RNAseq
 #SBATCH --cpus-per-task=5  ## make sure you modified $cpus accordingly!!!
 #SBATCH --output="%A_%a.out"
