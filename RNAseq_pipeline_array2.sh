@@ -10,6 +10,7 @@
 
 ##Requires: 
 # Demultiplexed files (*R1.fq.gz)
+# a "listfiles" with the list of demultiplexed files *R1.fq.gz
 # Read 3 (i5)
 
 ## DESCRIPTION ##
@@ -20,19 +21,22 @@
 
 date
 set -e 
+inDIR=/Genomics/ayroleslab/lamaya/bigProject/march_2018/novaseq_RNA
+outDIR=/scratch/tmp/lamaya/novaseq_RNA
+
 # set up the number of cpus to match --cpus-per-task, this value will be use for tophat, samtools, and featurecounts
 cpus=5
 ## if nudup is gonna be used, set $inputcount to 'dedup', otherwilse set it to 'uniq' and make sure to load read3
 inputcount='uniq'
 r3=*Read_3_Index_Read_passed_filter.fastq*
 
-#refgenome=~/genomes/hsapiens/genome
-#annotation=~/genomes/hsapiens/Homo_sapiens.GRCh38.86.chr.protcoding.gtf
+#refgenome=/Genomics/grid/users/lamaya/genomes/hsapiens/genome
+#annotation=/Genomics/grid/users/lamaya/genomes/hsapiens/Homo_sapiens.GRCh38.86.chr.protcoding.gtf
 
-refgenome=~/genomes/dmel_genome/dmel-all-chromosome-r6.14
-annotation=~/genomes/dmel_genome/dmel-all-r6.14.gtf
+refgenome=/Genomics/grid/users/lamaya/genomes/dmel_genome/dmel-all-chromosome-r6.14
+annotation=/Genomics/grid/users/lamaya/genomes/dmel_genome/dmel-all-r6.14.gtf
 
-source /Genomics/grid/users/lamaya/scripts/RNAseq_pipeline/RNAseq_map_readcounts2.sh ${cpus} ${inputcount} ${refgenome} ${annotation} ${r3}
+source /Genomics/grid/users/lamaya/scripts/RNAseq_pipeline/RNAseq_map_readcounts2.sh ${cpus} ${inputcount} ${refgenome} ${annotation} ${inDIR} ${outDIR} ${r3}
 
 echo "Done!"
 date
