@@ -1,6 +1,6 @@
 #/bin/bash
 
-#Batch parameters are specified in RNAseq_pipeline_array2 script that calls this script
+#Batch parameters are specified in RNAseq_pipeline_array_2lanes.sh script that calls this script
 
 cpus=$1
 inputcount=$2

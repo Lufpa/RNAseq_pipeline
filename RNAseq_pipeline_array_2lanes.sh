@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --mem=20000
-#SBATCH --time=1:00:00 --qos=1hr
+#SBATCH --time=3:00:00 --qos=1day
 #SBATCH --job-name=RNAseq
 #SBATCH --cpus-per-task=2  ## make sure you modified $cpus accordingly!!!
 #SBATCH --output="%A_%a.out"
@@ -15,7 +15,8 @@
 # Read 3 (i5)
 
 ## DESCRIPTION ##
-# This master scripts loads "RNAseq_map_readcounts2.sh". That script trims the raw fq files, maps using TopHat, removes multiple mapping reads, deduplicates bam files using either Picard or Nudup, and performs gene count using Feature Counts. 
+# This master scripts loads "RNAseq_map_readcounts_2lanes.sh". That script, first of all merges fastq files from 2 lanes of sequencing. 
+#then it trims the raw fq files, maps using TopHat, removes multiple mapping reads, deduplicates bam files using either Picard or Nudup, and performs gene count using Feature Counts. 
 # After all samples are processed, use the script "RNAse_parsing_output.sh" to generate general stats and a single gene count file for all samples.
 
 ## If previously run and failed, make sure there are no files left from the last run, tmp dirs, listfiles, etc. 
@@ -37,7 +38,7 @@ r3=*Read_3_Index_Read_passed_filter.fastq*
 refgenome=/Genomics/grid/users/lamaya/genomes/dmel_genome/dmel-all-chromosome-r6.14
 annotation=/Genomics/grid/users/lamaya/genomes/dmel_genome/dmel-all-r6.14.gtf
 
-source /Genomics/grid/users/lamaya/scripts/RNAseq_pipeline/RNAseq_map_readcounts2.sh ${cpus} ${inputcount} ${refgenome} ${annotation} ${inDIR} ${outDIR} ${r3}
+source /Genomics/grid/users/lamaya/scripts/RNAseq_pipeline/RNAseq_map_readcounts_2lanes.sh ${cpus} ${inputcount} ${refgenome} ${annotation} ${inDIR} ${outDIR} ${r3}
 
 echo "Done!"
 date
