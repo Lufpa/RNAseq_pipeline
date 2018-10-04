@@ -56,8 +56,9 @@ dedupSplit=${dedupfile%.bam}.split.bam
 java -Xmx30g -jar ~/bin/GATK/GenomeAnalysisTK.jar -T SplitNCigarReads -R $refGATK -I $outDIR/$dedupOrder -o $outDIR/$dedupSplit -U ALLOW_N_CIGAR_READS
 
 echo "Start haplotype caller in GATK"
-vcffile=$name.vcf
-java -Xmx30g -jar ~/bin/GATK/GenomeAnalysisTK.jar -T HaplotypeCaller -nct $cpus -R $refGATK -I $outDIR/$dedupSplit -dontUseSoftClippedBases -drf DuplicateRead -o $outDIR/$vcffile
+vcffile=$name.g.vcf
+# uses gvcf for RNA as normally used for DNA, otherwise RNA snps cannot be called for every position and then merged. The RNAseq option only calles variable site per sample. GATK still doesnt support join calling fo RNAseq snps, ut I'm running it anyways that way, after doing the advised remmaping of the RNAseq data with splitNcigar
+java -Xmx30g -jar ~/bin/GATK/GenomeAnalysisTK.jar -T HaplotypeCaller -nct $cpus -R $refGATK -I $outDIR/$dedupSplit -dontUseSoftClippedBases -drf DuplicateRead -ERC GVCF -o $outDIR/$vcffile
 echo "Done with variantcalling"
 date
 

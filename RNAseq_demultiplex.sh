@@ -9,11 +9,11 @@
 #Requires: the 3 fastq from sequences, BarcodeDemultiplex file (first column id, second i7 sequence)
 
 date
-r1=*read_1*
+r1=*Read_1*
 echo "read1 read"
-r2=*read_2*
+r2=*Read_2*
 echo "read2 read"
-r3=*read_3*
+r3=*Read_3*
 echo "read3 read"
 
 #allows one mismatch in the barcodes
