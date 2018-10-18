@@ -21,7 +21,7 @@
 #then it trims the raw fq files, maps using Star, removes multiple mapping reads, deduplicates bam files using either Picard or Nudup, and performs gene count using Feature Counts. 
 # After all samples are processed, use the script "RNAse_parsing_output.sh" to generate general stats and a single gene count file for all samples.
 
-## If previously run and failed, make sure there are no files left from the last run, tmp dirs, listfiles, etc. 
+## If previously run and failed, make sure there are no files left from the last run, tmp dirs, listfiles, etc. If using already trimmed files, keep the old Listfiles
 
 date
 set -e 
