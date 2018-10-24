@@ -62,11 +62,11 @@ if [ $inputcount == 'dedup' ] && [ -e $r3 ]
 		python ~/bin/nudup/nudup.py -f $r3 -o $outDIR/$dedupfile -s 8 -l 8 --rmdup-only $outDIR/$uniqfile >&2
 		echo "Done pcr dedup for" $uniqfile
 		countfile=${dedupfile}.genecount
-                ~/bin/subread-1.5.1-Linux-x86_64/bin/featureCounts -T $cpus -t exon -g gene_id -a $annotation -o $outDIR/$countfile $outDIR/${dedupfile}.sorted.dedup.bam
+                ~/bin/subread-1.5.1-Linux-x86_64/bin/featureCounts -T $cpus -t gene -g gene_id -a $annotation -o $outDIR/$countfile $outDIR/${dedupfile}.sorted.dedup.bam
 		echo "Done gene count for deduplicated file" $dedupfile
 else
 		countfile=${dedupfile}.genecount
-		 ~/bin/subread-1.5.1-Linux-x86_64/bin/featureCounts -T $cpus -t exon -g gene_id -a $annotation -o $outDIR/$countfile $outDIR/$uniqfile
+		 ~/bin/subread-1.5.1-Linux-x86_64/bin/featureCounts -T $cpus -t gene -g gene_id -a $annotation -o $outDIR/$countfile $outDIR/$uniqfile
 		echo "Done gene count for non-deduplicated file" $uniqfile
 fi
 
