@@ -9,6 +9,7 @@ annotation=$4
 inDIR=$5
 outDIR=$6
 r3=$7
+feature=$8
 
 fqfile=`awk -v file=$SLURM_ARRAY_TASK_ID '{if (NR==file) print $0 }' $inDIR/listfiles`
 echo "filename " $fqfile >&2
@@ -83,11 +84,11 @@ if [ $inputcount == 'dedup' ] && [ -e $r3 ]
 		echo "Done pcr dedup for" $uniqfile
 
 		countfile=${dedupfile}.genecount
-		~/bin/subread-1.5.1-Linux-x86_64/bin/featureCounts -T $cpus -t gene -g gene_id -a $annotation --ignoreDup -o $outDIR/$countfile $outDIR/${dedupfile}.sorted.markdup.bam
+		~/bin/subread-1.5.1-Linux-x86_64/bin/featureCounts -T $cpus -t $feature -g gene_id -a $annotation --ignoreDup -o $outDIR/$countfile $outDIR/${dedupfile}.sorted.markdup.bam
 		echo "Done gene count for deduplicated file" $dedupfile
 else
 		countfile=${dedupfile}.genecount
-		 ~/bin/subread-1.5.1-Linux-x86_64/bin/featureCounts -T $cpus -t gene -g gene_id -a $annotation -o $outDIR/$countfile $outDIR/$uniqfile
+		 ~/bin/subread-1.5.1-Linux-x86_64/bin/featureCounts -T $cpus -t $feature -g gene_id -a $annotation -o $outDIR/$countfile $outDIR/$uniqfile
 		echo "Done gene count for non-deduplicated file" $uniqfile
 fi
 
