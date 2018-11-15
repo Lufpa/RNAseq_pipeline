@@ -36,14 +36,17 @@ r3=*Read_3_Index_Read_passed_filter.fastq*
 
 refgenome=/Genomics/grid/users/lamaya/genomes/ERCC/Star/
 annotation=/Genomics/grid/users/lamaya/genomes/ERCC/ERCC92.gtf
+feature=exon # ERCC has no "gene" feature like dmel and hsapiens gtfs
 
 #refgenome=/Genomics/grid/users/lamaya/genomes/hsapiens/Star/
 #annotation=/Genomics/grid/users/lamaya/genomes/hsapiens/Homo_sapiens.GRCh38.86.chr.protcoding.gtf
+#feature=gene
 
 #refgenome=/Genomics/grid/users/lamaya/genomes/dmel_genome/Star/
 #annotation=/Genomics/grid/users/lamaya/genomes/dmel_genome/dmel-all-r6.14.gtf
+#feature=gene
 
-source /Genomics/grid/users/lamaya/scripts/RNAseq_pipeline/RNAseq_mappingStar.sh ${cpus} ${inputcount} ${refgenome} ${annotation} ${inDIR} ${outDIR} ${r3}
+source /Genomics/grid/users/lamaya/scripts/RNAseq_pipeline/RNAseq_mappingStar.sh ${cpus} ${inputcount} ${refgenome} ${annotation} ${inDIR} ${outDIR} ${r3} ${feature}
 
 echo "Done!"
 date
